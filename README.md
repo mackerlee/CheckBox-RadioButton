@@ -19,6 +19,7 @@ android 49 lesson
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="北京"
+          //--设置CheckBox的响应事件
           android:onClick="onCheckboxClicked"/>
       <CheckBox
           android:id="@+id/city_sh"
@@ -62,34 +63,63 @@ android 49 lesson
       }
   
       public void onCheckboxClicked(View view) {
-          // Is the view now checked?
-          boolean checked = ((CheckBox) view).isChecked();
-  
-          // Check which checkbox was clicked
-          switch(view.getId()) {
-              case R.id.city_bj:
-                  if (checked){
-  
-                  }else{
-  
-                  }
-                  break;
-              case R.id.city_sh:
-                  if (checked){
-  
-                  } else{
-  
-                  }
-                  break;
-              case R.id.city_gz:
-                  if (checked){
-  
-                  } else{
-  
-                  }
-                  break;
-          }
-      }
+        //--类型转换，然后判断是否被选中
+        boolean checked = ((CheckBox) view).isChecked();
+        //--根据组件ID判断
+        switch(view.getId()) {
+            //--根据选中不同的组件判断不同的功能
+            case R.id.city_bj:
+                if (checked){
+                    Toast.makeText(this,((CheckBox) view).getText().toString(),Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(this,"已取消"+((CheckBox) view).getText().toString(),Toast.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.city_sh:
+                if (checked){
+                    Toast.makeText(this,((CheckBox) view).getText().toString(),Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(this,"已取消"+((CheckBox) view).getText().toString(),Toast.LENGTH_LONG).show();
+                }
+                break;
+            case R.id.city_gz:
+                if (checked){
+                    Toast.makeText(this,((CheckBox) view).getText().toString(),Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(this,"已取消"+((CheckBox) view).getText().toString(),Toast.LENGTH_LONG).show();
+                 }
+                break;
+        }
+    }
   
   }
 
+android 50 lesson
+1.RadioButton:单选按钮，只能选择一个选项并响应.由于一组单选按钮之间是互斥关系，因此必须将一组相关的单选按钮用RadioGroup内把他               们分组在一起,通过分组在一起可以选择系统确保只能有一个单选按钮.
+2.RadioButton实例：在res->layout->radiobutton_activity_main.xml中：
+  <?xml version="1.0" encoding="utf-8"?>
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      //--设置RADIO组  
+      <RadioGroup
+          android:id="@+id/radiogroup01"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          //--设置Radio组水平排列，默认是垂直排列
+          android:orientation="horizontal">
+          <RadioButton
+              android:id="@+id/radio01"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              //--设置该radio默认选中
+              android:checked="true"
+              android:text="男"/>
+          <RadioButton
+              android:id="@+id/radio02"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="女"/>
+      </RadioGroup>
+  
+  </RelativeLayout>
